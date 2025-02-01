@@ -1,0 +1,21 @@
+---
+- name: Playbook to initialise kubeadm on master node
+  hosts:
+    - master
+  become: yes
+  tasks:
+    - name: Copy shell script to target
+      copy:
+        src: /home/ubuntu/ansible/master_node.sh
+        dest: /home/ubuntu/master_node.sh
+        mode: '0755'
+
+    - name: Execute shell script
+      shell: /home/ubuntu/master_node.sh
+      register: result
+    
+
+    - name: Show the output of the script
+      debug:
+        var: result
+    

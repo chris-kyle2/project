@@ -1,0 +1,21 @@
+---
+- name: Print facts for all hosts
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Display the hostname
+      debug:
+        msg: "The hostname is {{ ansible_hostname }}"
+
+    - name: Display the operating system
+      debug:
+        msg: "The operating system is {{ ansible_distribution }} {{ ansible_distribution_version }}"
+
+    - name: Display the default IPv4 address
+      debug:
+        msg: "The default IPv4 address is {{ ansible_default_ipv4.address }}"
+
+    - name: Display all available facts
+      debug:
+        var: ansible_facts
+
